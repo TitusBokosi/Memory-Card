@@ -32,6 +32,7 @@ function App() {
       if (currentScore > heighstScore) {
         setHighestScore(currentScore);
       }
+      setClicked([]);
       setCurrentScore(0);
     } else {
       setCurrentScore(currentScore + 1);
