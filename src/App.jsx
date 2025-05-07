@@ -45,15 +45,14 @@ function App() {
       <header className="header">
         <div className="header-text">
           <h1>Tees Memory Card</h1>
-          <p>
-            Click on a single container not morethan once to score a single
-            point
-          </p>
+          <div className="result-board">
+            <p className="current-score">Current score: {currentScore}</p>
+            <p className="heighst-score">Highest score: {heighstScore} </p>
+          </div>
         </div>
-        <div className="result-board">
-          <p className="current-score">Current score: {currentScore}</p>
-          <p className="heighst-score">Highest score: {heighstScore} </p>
-        </div>
+        <p>
+          Click on a single container not morethan once to score a single point
+        </p>
       </header>
       <div className="images-container">
         {imageUrl.map((url, index, id) => (

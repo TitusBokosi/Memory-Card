@@ -1,5 +1,5 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Comic Relief", sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -60,13 +60,24 @@ button:focus-visible {
   width: 100%;
 }
 .header {
-  display: flex;
   width: 100%;
   justify-content: space-between;
   align-items: flex-start;
   padding: 1rem;
   color: rgb(216, 141, 3);
   flex-wrap: wrap;
+  text-align: center;
+}
+.result-board {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+}
+.current-score {
+  color: white;
+}
+.heighst-score {
+  color: green;
 }
 .images-container {
   display: grid;
@@ -90,6 +101,15 @@ button:focus-visible {
   border-radius: 0.8rem;
 }
 @media (max-width: 500px) {
+  * {
+    font-size: 0.8rem;
+  }
+  .header {
+    flex-wrap: nowrap;
+  }
+  .images-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
   .gif-container {
     height: 100px;
   }
