@@ -89,11 +89,15 @@ button:focus-visible {
   display: block;
   border-radius: 0.8rem;
 }
-@media (max-height: 500px) {
+@media (max-width: 500px) {
   .gif-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    height: 150px;
+    height: 100px;
+  }
+  .gif-image {
+    width: inherit;
+    object-fit: cover;
+    object-position: center;
+    display: block;
   }
 }
 @media (prefers-color-scheme: light) {
