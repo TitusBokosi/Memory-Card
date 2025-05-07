@@ -5,24 +5,41 @@ function App() {
   const [currentScore, setCurrentScore] = useState(0);
   const [heighstScore, setHighestScore] = useState(0);
   const apiKey = "yYEw87iIjg8bbIiWcnx9jDUSQ5rcuKWn";
-  const [imageUrl, setImageUrl] = useState("");
+  const [imageUrl, setImageUrl] = useState([]);
+  const [clicked, setClicked] = useState([]);
+
   async function getGiphy() {
-    const apiUrl = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&limit=10&q=cats`;
+    const apiUrl = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=cats&limit=10`;
     try {
       const response = await fetch(apiUrl);
       if (!response.ok) {
         throw new Error(`Http error! status: ${response.status}`);
       }
       const data = await response.json();
-      setImageUrl(data.data[0].images.original.url);
+
+      const urls = data.data.map((image) => image.images.original.url);
+      setImageUrl(urls);
     } catch (error) {
       console.error("Error fetching gifs: ", error);
     }
   }
   useEffect(() => {
     getGiphy();
-  }, [imageUrl]);
+  }, []);
 
+  function handleClick(event) {
+    if (clicked.includes(event.target.src)) {
+      if (currentScore > heighstScore) {
+        setHighestScore(currentScore);
+      }
+      setCurrentScore(0);
+    } else {
+      setCurrentScore(currentScore + 1);
+      setClicked([...clicked, event.target.src]);
+    }
+    const newImages = [...imageUrl].sort(() => Math.random() - 0.5);
+    setImageUrl(newImages);
+  }
   return (
     <>
       <header className="header">
@@ -37,8 +54,21 @@ function App() {
           <p className="current-score">Current score: {currentScore}</p>
           <p className="heighst-score">Highest score: {heighstScore} </p>
         </div>
-        <img src={imageUrl} alt="" />
       </header>
+      <div className="images-container">
+        {imageUrl.map((url, index, id) => (
+          <div className="gif-container">
+            <img
+              className="gif-image"
+              key={index}
+              src={url}
+              id={id}
+              alt={`Cat GIF ${index + 1}`}
+              onClick={handleClick}
+            />
+          </div>
+        ))}
+      </div>
     </>
   );
 }

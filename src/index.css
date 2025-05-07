@@ -11,6 +11,7 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
 }
 * {
   box-sizing: border-box;
@@ -64,8 +65,37 @@ button:focus-visible {
   justify-content: space-between;
   align-items: flex-start;
   padding: 1rem;
+  color: rgb(216, 141, 3);
+  flex-wrap: wrap;
 }
-
+.images-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  max-width: 100vw;
+  gap: 1rem;
+  padding: 1rem;
+}
+.gif-container {
+  width: 100%;
+  height: 300px;
+  border: solid rgb(216, 141, 3) 3px;
+  border-radius: 1rem;
+}
+.gif-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  border-radius: 0.8rem;
+}
+@media (max-height: 500px) {
+  .gif-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    height: 150px;
+  }
+}
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
